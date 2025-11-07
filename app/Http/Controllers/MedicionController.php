@@ -58,18 +58,18 @@ class MedicionController extends Controller
             ->with('success', 'Medición creada y analizada exitosamente');
     }
 
-    public function show(Medicion $medicion)
+    public function show(Medicion $medicione)
     {
         // Verificar que la medición pertenece al usuario
-        if ($medicion->user_id !== auth()->id()) {
+        if ($medicione->user_id !== auth()->id()) {
             return redirect()->route('mediciones.index')
                 ->with('error', 'No tienes permiso para ver esta medición');
         }
 
         // Generar datos para gráficas
-        $datosGrafica = $this->errorService->generarDatosGrafica($medicion->valores);
+        $datosGrafica = $this->errorService->generarDatosGrafica($medicione->valores);
 
-        return view('mediciones.show', compact('medicion', 'datosGrafica'));
+        return view('mediciones.show', compact('medicione', 'datosGrafica'));
     }
 
     public function analizar(Request $request)
@@ -136,17 +136,16 @@ class MedicionController extends Controller
         ]);
     }
 
-    public function destroy(Medicion $medicion)
+    public function destroy(Medicion $medicione)
     {
-        // Verificar que la medición pertenece al usuario
-        if ($medicion->user_id !== auth()->id()) {
-            return redirect()->route('mediciones.index')
+        if ($medicione->user_id !== auth()->id()) {
+            return redirect()->route('experimentos.index')
                 ->with('error', 'No tienes permiso para eliminar esta medición');
         }
 
-        $medicion->delete();
+        $medicione->delete();
 
-        return redirect()->route('mediciones.index')
+        return redirect()->route('experimentos.index')
             ->with('success', 'Medición eliminada exitosamente');
     }
 }

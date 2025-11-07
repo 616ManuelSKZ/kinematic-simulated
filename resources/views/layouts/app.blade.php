@@ -34,7 +34,7 @@
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex items-center">
                             <a href="{{ route('dashboard') }}" 
                                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors {{ request()->routeIs('dashboard') ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,36 +43,98 @@
                                 Inicio
                             </a>
 
-                            <a href="{{ route('mruv') }}" 
-                               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors {{ request()->routeIs('mruv') ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            <!-- Dropdown de Simuladores -->
+                            <div x-data="{ openSim: false }" class="relative">
+                                <button @click="openSim = !openSim" 
+                                    class="inline-flex items-center px-3 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-600 hover:text-gray-900 hover:border-gray-300 focus:outline-none transition">
+                                    <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                    Simuladores
+                                    <svg class="ml-1 w-4 h-4 text-gray-500 transition-transform duration-200" 
+                                        :class="{ 'rotate-180': openSim }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+
+                                <!-- Menú desplegable -->
+                                <div x-show="openSim" 
+                                    @click.away="openSim = false"
+                                    x-transition:enter="transition ease-out duration-200"
+                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                    x-transition:leave="transition ease-in duration-75"
+                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                    x-transition:leave-end="transform opacity-0 scale-95"
+                                    class="absolute left-0 mt-2 w-60 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+                                    style="display: none;">
+
+                                    <!-- Opciones principales -->
+                                    <div class="py-1">
+                                        <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">Simuladores</div>
+                                        <a href="{{ route('mru') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition">
+                                            ⚙️ <span>MRU — Rectilíneo Uniforme</span>
+                                        </a>
+                                        <a href="{{ route('mruv') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition">
+                                            🚀 <span>MRUV — Uniformemente Variado</span>
+                                        </a>
+                                        <a href="{{ route('parabolico') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 transition">
+                                            🎯 <span>Movimiento Parabólico</span>
+                                        </a>
+                                        <a href="{{ route('mediciones.create') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 transition">
+                                            📏 <span>Análisis de Mediciones</span>
+                                        </a>
+                                        <a href="{{ route('arduino.sensor') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition">
+                                            🔧 <span>MRU con Arduino + Sensor</span>
+                                        </a>
+                                    </div>
+
+                                    <hr class="my-1">
+
+                                    <!-- Sección secundaria -->
+                                    <div class="py-1">
+                                        <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">Utilidades</div>
+                                        <a href="{{ route('experimentos.index') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">
+                                            📂 <span>Mis Experimentos</span>
+                                        </a>
+                                        <a href="{{ route('ayuda') }}" 
+                                        class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-yellow-700 transition">
+                                            💡 <span>Centro de Ayuda</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Desarrolladores -->
+                            <a href="{{ route('desarrolladores') }}" 
+                            class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors 
+                            {{ request()->routeIs('desarrolladores') 
+                                    ? 'border-violet-500 text-gray-900' 
+                                    : 'border-transparent text-gray-500 hover:text-violet-700 hover:border-violet-300' }}">
+                                <svg class="w-4 h-4 mr-2 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                        d="M15 10l4.55 2.27a2 2 0 010 3.46L15 18m-6 0l-4.55-2.27a2 2 0 010-3.46L9 10m6-4H9m6 0a3 3 0 013 3v1a3 3 0 01-3 3H9a3 3 0 01-3-3V9a3 3 0 013-3h6z" />
                                 </svg>
-                                MRUV
+                                Desarrolladores
                             </a>
 
-                            <a href="{{ route('parabolico') }}" 
-                               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors {{ request()->routeIs('parabolico') ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                            <!-- Acerca de -->
+                            <a href="{{ route('acerca-de') }}" 
+                            class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors 
+                            {{ request()->routeIs('acerca-de') 
+                                    ? 'border-slate-500 text-gray-900' 
+                                    : 'border-transparent text-gray-500 hover:text-slate-700 hover:border-slate-300' }}">
+                                <svg class="w-4 h-4 mr-2 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                        d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
                                 </svg>
-                                Parabólico
-                            </a>
-
-                            <a href="{{ route('experimentos.index') }}" 
-                               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors {{ request()->routeIs('experimentos.*') ? 'border-purple-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                </svg>
-                                Experimentos
-                            </a>
-
-                            <a href="{{ route('ayuda') }}" 
-                               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors {{ request()->routeIs('ayuda') ? 'border-yellow-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Ayuda
+                                Acerca de
                             </a>
                         </div>
                     </div>
@@ -149,36 +211,108 @@
 
             <!-- Responsive Navigation Menu (Mobile) -->
             <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
-                <div class="pt-2 pb-3 space-y-1">
-                    <a href="{{ route('dashboard') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('dashboard') ? 'border-blue-500 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        Inicio
+                <div class="pt-2 pb-3 space-y-1" x-data="{ openSimMob: false }">
+                    
+                    <!-- Inicio -->
+                    <a href="{{ route('dashboard') }}" 
+                    class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium 
+                    {{ request()->routeIs('dashboard') 
+                        ? 'border-blue-500 text-blue-700 bg-blue-50' 
+                        : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                        🏠 Inicio
                     </a>
-                    <a href="{{ route('mru') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('mru') ? 'border-cyan-500 text-cyan-700 bg-cyan-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        MRU
+
+                    <!-- Simuladores con submenú colorido -->
+                    <button @click="openSimMob = !openSimMob"
+                            class="w-full flex justify-between items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-700 hover:text-blue-700 hover:bg-blue-50 hover:border-blue-300 focus:outline-none">
+                        <span>🧪 Simuladores</span>
+                        <svg :class="{ 'rotate-180': openSimMob }" 
+                            class="w-5 h-5 transform transition-transform text-gray-500" 
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Submenú con íconos -->
+                    <div x-show="openSimMob"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform scale-95"
+                        x-transition:enter-end="opacity-100 transform scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="opacity-100 transform scale-100"
+                        x-transition:leave-end="opacity-0 transform scale-95"
+                        class="ml-6 border-l border-gray-200 pl-3 space-y-1 mt-1"
+                        style="display: none;">
+
+                        <!-- MRU -->
+                        <a href="{{ route('mru') }}" 
+                        class="flex items-center gap-2 py-2 px-2 rounded-md text-sm text-blue-700 hover:bg-blue-50 transition">
+                            ⚙️ 
+                            <span>MRU — Rectilíneo Uniforme</span>
+                        </a>
+
+                        <!-- MRUV -->
+                        <a href="{{ route('mruv') }}" 
+                        class="flex items-center gap-2 py-2 px-2 rounded-md text-sm text-sky-700 hover:bg-sky-50 transition">
+                            🚀 
+                            <span>MRUV — Uniformemente Variado</span>
+                        </a>
+
+                        <!-- Parabólico -->
+                        <a href="{{ route('parabolico') }}" 
+                        class="flex items-center gap-2 py-2 px-2 rounded-md text-sm text-green-700 hover:bg-green-50 transition">
+                            🎯 
+                            <span>Movimiento Parabólico</span>
+                        </a>
+
+                        <!-- Mediciones -->
+                        <a href="{{ route('mediciones.create') }}" 
+                        class="flex items-center gap-2 py-2 px-2 rounded-md text-sm text-orange-700 hover:bg-orange-50 transition">
+                            📏 
+                            <span>Análisis de Mediciones</span>
+                        </a>
+
+                        <!-- Arduino -->
+                        <a href="{{ route('arduino.sensor') }}" 
+                        class="flex items-center gap-2 py-2 px-2 rounded-md text-sm text-teal-700 hover:bg-teal-50 transition">
+                            🔧 
+                            <span>MRU con Arduino + Sensor</span>
+                        </a>
+                    </div>
+
+                    <!-- Otros enlaces -->
+                    <a href="{{ route('experimentos.index') }}" 
+                    class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium 
+                    {{ request()->routeIs('experimentos.*') 
+                        ? 'border-purple-500 text-purple-700 bg-purple-50' 
+                        : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                        📂 Experimentos
                     </a>
-                    <a href="{{ route('mruv') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('mruv') ? 'border-blue-500 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        MRUV
+
+                    <a href="{{ route('ayuda') }}" 
+                    class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium 
+                    {{ request()->routeIs('ayuda') 
+                        ? 'border-yellow-500 text-yellow-700 bg-yellow-50' 
+                        : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                        💡 Ayuda
                     </a>
-                    <a href="{{ route('parabolico') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('parabolico') ? 'border-green-500 text-green-700 bg-green-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        Parabólico
+
+                    <!-- 🎨 Desarrolladores -->
+                    <a href="{{ route('desarrolladores') }}" 
+                    class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium 
+                    {{ request()->routeIs('desarrolladores') 
+                        ? 'border-violet-500 text-violet-700 bg-violet-50' 
+                        : 'border-transparent text-gray-600 hover:text-violet-700 hover:bg-violet-50 hover:border-violet-300' }}">
+                        👨‍💻 Desarrolladores
                     </a>
-                    <a href="{{ route('mediciones.create') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('mediciones.*') ? 'border-orange-500 text-orange-700 bg-orange-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        Mediciones
-                    </a>
-                    <a href="{{ route('arduino.sensor') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('arduino.*') ? 'border-teal-500 text-teal-700 bg-teal-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        Arduino + Sensor
-                    </a>
-                    <a href="{{ route('experimentos.index') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('experimentos.*') ? 'border-purple-500 text-purple-700 bg-purple-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        Experimentos
-                    </a>
-                    <a href="{{ route('ayuda') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('ayuda') ? 'border-yellow-500 text-yellow-700 bg-yellow-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                        Ayuda
-                    </a>
-                    <a href="{{ route('desarrolladores') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">
-                        Desarrolladores
-                    </a>
-                    <a href="{{ route('acerca-de') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">
-                        Acerca de
+
+                    <!-- ℹ️ Acerca de -->
+                    <a href="{{ route('acerca-de') }}" 
+                    class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium 
+                    {{ request()->routeIs('acerca-de') 
+                        ? 'border-slate-500 text-slate-700 bg-slate-50' 
+                        : 'border-transparent text-gray-600 hover:text-slate-700 hover:bg-slate-50 hover:border-slate-300' }}">
+                        ℹ️ Acerca de
                     </a>
                 </div>
 
@@ -190,18 +324,17 @@
                     </div>
 
                     <div class="mt-3 space-y-1">
-                        <!-- <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                            Mi Perfil
-                        </a> -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-red-50">
-                                Cerrar Sesión
+                            <button type="submit" 
+                                    class="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-red-50">
+                                🚪 Cerrar Sesión
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
+
         </nav>
 
         <!-- Page Content -->

@@ -339,6 +339,77 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const tipoSelect = document.getElementById('tipo_magnitud');
+    const unidadContainer = document.getElementById('unidad').parentElement;
+
+    const unidadesPorMagnitud = {
+        longitud: ['m', 'cm', 'mm', 'km'],
+        tiempo: ['s', 'min', 'h', 'ms'],
+        masa: ['kg', 'g', 'mg', 'lb'],
+        velocidad: ['m/s', 'km/h', 'cm/s'],
+        aceleracion: ['m/s²', 'cm/s²'],
+        otra: []
+    };
+
+    function renderCampoUnidad(tipo) {
+        // 🔹 Eliminar cualquier campo anterior (input o select)
+        const existente = unidadContainer.querySelector('#unidad');
+        if (existente) existente.remove();
+
+        const unidades = unidadesPorMagnitud[tipo] || [];
+
+        if (unidades.length > 0) {
+            // Crear select con opciones
+            const select = document.createElement('select');
+            select.id = 'unidad';
+            select.required = true;
+            select.className = 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500';
+
+            unidades.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u;
+                opt.textContent = u;
+                select.appendChild(opt);
+            });
+
+            const optOtra = document.createElement('option');
+            optOtra.value = 'otra';
+            optOtra.textContent = 'Otra (escribir manualmente)';
+            select.appendChild(optOtra);
+
+            unidadContainer.appendChild(select);
+
+            // Si selecciona "otra", volver a input
+            select.addEventListener('change', () => {
+                if (select.value === 'otra') {
+                    renderCampoUnidad('otra');
+                }
+            });
+
+        } else {
+            // Campo libre (input)
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = 'unidad';
+            input.required = true;
+            input.placeholder = 'Ej: cm, s, g, m/s';
+            input.className = 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500';
+            unidadContainer.appendChild(input);
+        }
+    }
+
+    // Detectar cambios de tipo
+    tipoSelect.addEventListener('change', () => {
+        renderCampoUnidad(tipoSelect.value);
+    });
+
+    // 🔹 Inicializar al cargar (mostrar select correspondiente)
+    renderCampoUnidad(tipoSelect.value);
+});
+</script>
+
+<script>
 let analisisActual = null;
 let graficaChart = null;
 
@@ -595,15 +666,20 @@ document.getElementById('btnGuardar').addEventListener('click', async () => {
             body: JSON.stringify(datos)
         });
 
-        const result = await response.json();
+        if (response.redirected) {
+            window.location.href = response.url;
+            return;
+        }
 
-        if (response.ok) {
-            window.location.href = result.redirect || '{{ route("mediciones.index") }}';
+        const result = await response.json();
+        if (result.redirect) {
+            window.location.href = result.redirect;
         }
     } catch (error) {
         console.error('Error:', error);
         alert('Error al guardar el análisis');
     }
+
 });
 
 // Propagar incertidumbre

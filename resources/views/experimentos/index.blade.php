@@ -19,8 +19,8 @@
             <div class="flex-1 min-w-[200px]">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Buscar por nombre</label>
                 <input type="text" name="buscar" value="{{ request('buscar') }}" 
-                       placeholder="Nombre del experimento..."
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    placeholder="Nombre del experimento..."
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Tipo</label>
@@ -36,9 +36,12 @@
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
                     Filtrar
                 </button>
-                <a href="{{ route('experimentos.index') }}" class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-md inline-block">
+                @if(request()->has('buscar') || request()->has('tipo'))
+                <a href="{{ route('experimentos.index') }}" 
+                class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-md inline-block">
                     Limpiar
                 </a>
+                @endif
             </div>
         </form>
     </div>
@@ -204,11 +207,12 @@
     </div>
 
     <!-- Paginación -->
-    @if($experimentos->hasPages())
-    <div class="mt-8">
-        {{ $experimentos->links() }}
-    </div>
+    @if($experimentos instanceof \Illuminate\Pagination\LengthAwarePaginator && $experimentos->hasPages())
+        <div class="mt-8">
+            {{ $experimentos->links() }}
+        </div>
     @endif
+
     @else
     <div class="bg-white rounded-lg shadow-lg p-12 text-center">
         <svg class="w-24 h-24 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

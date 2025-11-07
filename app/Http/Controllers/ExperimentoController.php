@@ -16,19 +16,51 @@ class ExperimentoController extends Controller
         $this->cinematicaService = $cinematicaService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $experimentos = auth()->user()->experimentos()
-            ->latest()
-            ->paginate(10);
+        // Capturar filtros
+        $buscar = $request->input('buscar');
+        $tipo = $request->input('tipo');
 
-        $mediciones = auth()->user()->mediciones()
-            ->latest()
-            ->take(10)
-            ->get();
+        // Query base de experimentos
+        $queryExperimentos = auth()->user()->experimentos()->latest();
+
+        // Filtro por nombre
+        if ($buscar) {
+            $queryExperimentos->where('nombre', 'like', '%' . $buscar . '%');
+        }
+
+        // Filtro por tipo (solo MRU, MRUV o Parabólico)
+        if ($tipo && in_array($tipo, ['mru', 'mruv', 'parabolico'])) {
+            $queryExperimentos->where('tipo', $tipo);
+        }
+
+        // Paginar experimentos (solo si no se filtró por "medicion")
+        $experimentos = $queryExperimentos->paginate(10)->appends($request->query());
+
+        // Si el filtro es "medicion", mostrar solo mediciones
+        if ($tipo === 'medicion') {
+            $experimentos = collect(); // vacío
+        }
+
+        // Query base de mediciones
+        $queryMediciones = auth()->user()->mediciones()->latest();
+
+        // Filtro por nombre (aplica también a mediciones)
+        if ($buscar) {
+            $queryMediciones->where('nombre', 'like', '%' . $buscar . '%');
+        }
+
+        // Si el filtro es distinto de “medicion”, mostrar todas o según filtro
+        if (!$tipo || $tipo === 'medicion') {
+            $mediciones = $queryMediciones->take(10)->get();
+        } else {
+            $mediciones = collect(); // vacío
+        }
 
         return view('experimentos.index', compact('experimentos', 'mediciones'));
     }
+
 
     public function create(Request $request)
     {

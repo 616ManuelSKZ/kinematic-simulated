@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Simulador de Cinemática') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-50 font-sans antialiased" 
-      style="background-image: url('{{ asset('imagenes/fondo.jpg') }}'); 
-             background-size: cover; 
-             background-position: center; 
-             background-repeat: no-repeat; 
-             background-attachment: fixed;">
+<body class="bg-gray-50 font-sans antialiased">
     <div class="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
 
         <!-- Logo institucional -->

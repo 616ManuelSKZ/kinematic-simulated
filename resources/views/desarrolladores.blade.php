@@ -35,19 +35,29 @@
 
                 <!-- Contacto -->
                 <div class="w-full space-y-2">
-                    <div class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm">
+
+                    <!-- Correo -->
+                    <a href="mailto:Caste756699@gmail.com" 
+                    class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
                         <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="text-sm text-gray-700 break-all">Caste756699@gmail.com</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    </a>
+
+                    <!-- Teléfono / WhatsApp -->
+                    <a href="https://wa.me/50361019414" target="_blank"
+                    class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-green-50 transition">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         <span class="text-sm text-gray-700">+503 6101 9414</span>
-                    </div>
+                    </a>
+
                 </div>
+
             </div>
         </div>
 
@@ -60,18 +70,25 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-1 text-center">MANUEL DE JESÚS RENDEROS HERNÁNDEZ</h3>
                 <p class="text-sm text-gray-500 mb-4">Desarrollador de Software</p>
                 <div class="w-full space-y-2">
-                    <div class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    <!-- Correo -->
+                    <a href="mailto:503manuelhernandez2002@gmail.com" 
+                    class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
                         <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="text-sm text-gray-700 break-all">503manuelhernandez2002@gmail.com</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    </a>
+
+                    <!-- Teléfono / WhatsApp -->
+                    <a href="https://wa.me/50361238848" target="_blank"
+                    class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-green-50 transition">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         <span class="text-sm text-gray-700">+503 6123-8848</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -85,18 +102,25 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-1 text-center">EDENILSON JEOVANNY FLORES BARAHONA</h3>
                 <p class="text-sm text-gray-500 mb-4">Desarrollador de Software</p>
                 <div class="w-full space-y-2">
-                    <div class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    <!-- Correo -->
+                    <a href="mailto:barahonaedenilson54@gmail.com" 
+                    class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
                         <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="text-sm text-gray-700 break-all">barahonaedenilson54@gmail.com</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    </a>
+
+                    <!-- Teléfono / WhatsApp -->
+                    <a href="https://wa.me/50373599776" target="_blank"
+                    class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-green-50 transition">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         <span class="text-sm text-gray-700">+503 7359-9776</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -110,18 +134,25 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-1 text-center">ELIAN ISAI ARGUETA AMAYA</h3>
                 <p class="text-sm text-gray-500 mb-4">Desarrollador de Software</p>
                 <div class="w-full space-y-2">
-                    <div class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    <!-- Correo -->
+                    <a href="mailto:elian.argueta24@itca.edu.sv" 
+                    class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
                         <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="text-sm text-gray-700 break-all">elian.argueta24@itca.edu.sv</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    </a>
+
+                    <!-- Teléfono / WhatsApp -->
+                    <a href="https://wa.me/50375324732" target="_blank"
+                    class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-green-50 transition">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         <span class="text-sm text-gray-700">+503 7532-4732</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -133,20 +164,27 @@
                     <img src="{{ asset('imagenes/dev5.png') }}" alt="Desarrollador 5" class="w-full h-full object-cover">
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-1 text-center">MARIA LUISA RAMOS SANCHEZ</h3>
-                <p class="text-sm text-gray-500 mb-4">Desarrollador de Software</p>
+                <p class="text-sm text-gray-500 mb-4">Desarrolladora de Software</p>
                 <div class="w-full space-y-2">
-                    <div class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    <!-- Correo -->
+                    <a href="mailto:Clu.maria777788@gmail.com" 
+                    class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
                         <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="text-sm text-gray-700 break-all">lu.maria777788@gmail.com</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    </a>
+
+                    <!-- Teléfono / WhatsApp -->
+                    <a href="https://wa.me/50378383961" target="_blank"
+                    class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-green-50 transition">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         <span class="text-sm text-gray-700">+503 7838-3961</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -160,26 +198,36 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-1 text-center">JOSE EDUARDO GUIDOS CORNEJO</h3>
                 <p class="text-sm text-gray-500 mb-4">Desarrollador de Software.</p>
                 <div class="w-full space-y-2">
-                    <div class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    <!-- Correo -->
+                    <a href="mailto:jose.guidos24@itca.edu.sv" 
+                    class="flex items-start gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-blue-50 transition">
                         <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                         <span class="text-sm text-gray-700 break-all">jose.guidos24@itca.edu.sv</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm">
+                    </a>
+
+                    <!-- Teléfono / WhatsApp -->
+                    <a href="https://wa.me/50368360265" target="_blank"
+                    class="flex items-center gap-2 bg-white p-3 rounded-lg shadow-sm hover:bg-green-50 transition">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         <span class="text-sm text-gray-700">+503 6836-0265</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Botón Volver -->
-    <div class="flex justify-center">
-        <a href="{{ route('dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition text-sm sm:text-base">
+    <div class="flex justify-center mt-8">
+        <a href="{{ route('dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-colors flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
             Volver al Inicio
         </a>
     </div>

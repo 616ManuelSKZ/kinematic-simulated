@@ -99,7 +99,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
                         </svg>
                     </div>
-                    <h3 class="ml-4 text-xl font-semibold text-gray-800">Arduino</h3>
+                    <h3 class="ml-4 text-xl font-semibold text-gray-800">MRUV con Arduino</h3>
                 </div>
                 <p class="text-gray-600 mb-4">Captura datos con sensor HC-SR04</p>
                 <span class="text-teal-600 text-sm font-medium">Conectar sensor →</span>
@@ -171,10 +171,10 @@
         </a>
     </div>
 
-    <!-- Últimos Experimentos -->
-    @if($ultimosExperimentos->count() > 0)
+    <!-- Historial de Simuladores -->
+    @if($historial->count() > 0)
     <div class="bg-white rounded-lg shadow-lg p-6">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Últimos Experimentos</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Historial de Simuladores</h2>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -186,27 +186,33 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach($ultimosExperimentos as $exp)
+                    @foreach($historial as $item)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {{ $exp->nombre }}
+                            {{ $item['nombre'] }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <span class="px-2 py-1 text-xs rounded-full {{ $exp->tipo === 'mruv' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800' }}">
-                                {{ strtoupper($exp->tipo) }}
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                            <span class="px-2 py-1 text-xs rounded-full {{ $item['color'] }}">
+                                {{ $item['tipo'] }}
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $exp->created_at->format('d/m/Y H:i') }}
+                            {{ $item['fecha']->format('d/m/Y H:i') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
-                            <a href="{{ route('experimentos.show', $exp) }}" class="text-blue-600 hover:text-blue-800">Ver</a>
+                            <a href="{{ $item['ruta'] }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                                Ver
+                            </a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
+    @else
+    <div class="bg-white rounded-lg shadow-lg p-8 text-center text-gray-500">
+        No hay simulaciones registradas todavía.
     </div>
     @endif
 
