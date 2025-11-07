@@ -3,6 +3,8 @@
 use App\Http\Controllers\ExperimentoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedicionController;
+use App\Http\Controllers\AcercaController;
+use App\Http\Controllers\DesarrolladorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -62,10 +64,28 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/opencv/guardar', [ExperimentoController::class, 'guardarOpenCV'])
         ->name('opencv.guardar');
 
+    // Captura con Arduino
+    Route::get('/arduino-sensor', function () {
+        return view('modulos.arduino-sensor');
+    })->name('arduino.sensor');
+
+    Route::post('/arduino/guardar', [ExperimentoController::class, 'guardarArduino'])
+        ->name('arduino.guardar');
+
     // Ayuda
     Route::get('/ayuda', function () {
         return view('ayuda.index');
     })->name('ayuda');
+
+    // Ruta para mostrar los desarrolladores
+    Route::get('/desarrolladores', function () {
+        return view('desarrolladores');
+    })->name('desarrolladores');
+
+    // Ruta para mostrar la información "Acerca de"
+    Route::get('/acerca-de', function () {
+        return view('acerca-de');
+    })->name('acerca-de');
 });
 
 require __DIR__.'/auth.php';

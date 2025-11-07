@@ -206,6 +206,73 @@ class ExperimentoController extends Controller
         ]);
     }
 
+    /**
+     * Guardar datos capturados con Arduino
+     */
+    public function guardarArduino(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'nombre' => 'required|string|max:255',
+                'datos' => 'required|array|min:1',
+                'datos.*.t' => 'required|numeric',
+                'datos.*.d' => 'required|numeric',
+                'datos.*.v' => 'required|numeric',
+                'datos.*.a' => 'required|numeric',
+                'sensor' => 'nullable|string',
+                'arduino' => 'nullable|string'
+            ]);
+
+            // Calcular estadísticas
+            $datos = $validated['datos'];
+            $n = count($datos);
+            
+            $distProm = array_sum(array_column($datos, 'd')) / $n;
+            $velProm = array_sum(array_column($datos, 'v')) / $n;
+            $acelProm = array_sum(array_column($datos, 'a')) / $n;
+
+            $experimento = Experimento::create([
+                'user_id' => auth()->id(),
+                'nombre' => $validated['nombre'],
+                'tipo' => 'arduino_sensor',
+                'parametros' => [
+                    'sensor' => $validated['sensor'] ?? 'HC-SR04',
+                    'arduino' => $validated['arduino'] ?? 'Uno R3',
+                    'num_muestras' => $n,
+                    'tiempo_total' => end($datos)['t']
+                ],
+                'resultados' => [
+                    'datos' => $datos,
+                    'promedios' => [
+                        'distancia' => round($distProm, 2),
+                        'velocidad' => round($velProm, 2),
+                        'aceleracion' => round($acelProm, 2)
+                    ]
+                ],
+                'notas' => 'Datos capturados con Arduino ' . ($validated['arduino'] ?? 'Uno R3') . ' y sensor ' . ($validated['sensor'] ?? 'HC-SR04') . '. Total: ' . $n . ' muestras.'
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'experimento_id' => $experimento->id,
+                'message' => 'Experimento guardado correctamente'
+            ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            \Log::error('Error guardando experimento Arduino: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al guardar: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
     private function parsearCSV($file): array
     {
         $datos = [];

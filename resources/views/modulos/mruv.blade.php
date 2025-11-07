@@ -102,12 +102,23 @@
         <!-- Visualización -->
         <div class="lg:col-span-2">
             <!-- Canvas de Animación -->
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-                <h2 class="text-xl font-semibold mb-4">Animación</h2>
-                <div class="border border-gray-300 rounded-lg overflow-hidden">
-                    <canvas id="canvasMRUV" width="700" height="200" class="w-full"></canvas>
+            <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-6">
+                <h2 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Animación</h2>
+
+                <!-- Contenedor flexible para el canvas -->
+                <div class="relative border border-gray-300 rounded-lg overflow-hidden bg-gray-50">
+                    <div class="w-full overflow-x-auto">
+                        <canvas 
+                            id="canvasMRUV" 
+                            class="block w-full max-w-full h-auto" 
+                            width="700" 
+                            height="200">
+                        </canvas>
+                    </div>
                 </div>
-                <div class="mt-4 flex justify-between items-center">
+
+                <!-- Estado y tiempo -->
+                <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <div id="estadoAnimacion" class="text-sm text-gray-600">
                         Estado: Detenido
                     </div>
@@ -278,6 +289,17 @@ function crearGraficas(datos) {
 function iniciarAnimacion(datos) {
     const canvas = document.getElementById('canvasMRUV');
     const ctx = canvas.getContext('2d');
+
+    // Calcular dimensiones dinámicas
+    const anchoContenedor = canvas.parentElement.offsetWidth;
+    canvas.width = anchoContenedor;
+    canvas.height = 220;
+
+    // Calcular escala con base en la posición máxima de la simulación
+    const maxX = Math.max(...datos.map(d => d.x));
+    const margen = 100; // margen lateral para que el carrito no toque bordes
+    const escala = (canvas.width - margen * 2) / maxX;
+
     let indice = 0;
     animacionActiva = true;
 
@@ -289,29 +311,34 @@ function iniciarAnimacion(datos) {
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Dibujar pista
+
+        // Fondo de pista
         ctx.fillStyle = '#e5e7eb';
         ctx.fillRect(0, canvas.height - 60, canvas.width, 60);
-        
-        // Líneas de referencia cada 50px
+
+        // Líneas de referencia cada 50 px aprox (ajustadas según ancho)
         ctx.strokeStyle = '#9ca3af';
         ctx.lineWidth = 1;
-        for (let i = 0; i < canvas.width; i += 50) {
+        const separacion = Math.max(40, canvas.width / 15);
+        for (let i = 0; i < canvas.width; i += separacion) {
             ctx.beginPath();
             ctx.moveTo(i, canvas.height - 60);
             ctx.lineTo(i, canvas.height);
             ctx.stroke();
         }
 
-        // Calcular posición del carrito
+        // Obtener el dato actual
         const dato = datos[indice];
-        const escala = 5; // píxeles por metro
-        const posX = 50 + (dato.x * escala);
-        
-        // Dibujar carrito
+        const posX = margen + dato.x * escala;
+
+        // Dibujar carrito (tamaño proporcional)
+        const carroAncho = 30;
+        const carroAlto = 20;
+
         ctx.fillStyle = '#3b82f6';
-        ctx.fillRect(posX - 15, canvas.height - 80, 30, 20);
+        ctx.fillRect(posX - carroAncho / 2, canvas.height - 80, carroAncho, carroAlto);
+
+        // Ruedas
         ctx.fillStyle = '#1e40af';
         ctx.beginPath();
         ctx.arc(posX - 10, canvas.height - 58, 6, 0, Math.PI * 2);
@@ -320,21 +347,23 @@ function iniciarAnimacion(datos) {
         ctx.arc(posX + 10, canvas.height - 58, 6, 0, Math.PI * 2);
         ctx.fill();
 
-        // Información
+        // Etiquetas informativas
         ctx.fillStyle = '#1f2937';
-        ctx.font = '14px Arial';
+        ctx.font = '13px Arial';
         ctx.fillText(`x = ${dato.x.toFixed(2)} m`, posX - 30, canvas.height - 90);
         ctx.fillText(`v = ${dato.v.toFixed(2)} m/s`, posX - 30, canvas.height - 105);
 
+        // Estado UI
         document.getElementById('tiempoActual').textContent = `t = ${dato.t.toFixed(2)} s`;
         document.getElementById('estadoAnimacion').textContent = 'Estado: Animando...';
 
         indice++;
-        animacionFrame = setTimeout(animar, 50);
+        animacionFrame = requestAnimationFrame(animar);
     };
 
     animar();
 }
+
 
 document.getElementById('btnReset').addEventListener('click', () => {
     animacionActiva = false;
@@ -404,4 +433,13 @@ document.getElementById('btnGuardar').addEventListener('click', async () => {
     }
 });
 </script>
+<style>
+#canvasMRUV {
+    transition: all 0.3s ease;
+}
+#canvasMRUV:hover {
+    filter: brightness(1.03);
+}
+</style>
+
 @endsection

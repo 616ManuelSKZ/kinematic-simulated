@@ -295,6 +295,12 @@ function iniciarAnimacion(datos) {
     let indice = 0;
     animacionActiva = true;
 
+    const xMax = Math.max(...datos.map(d => d.x));
+    const margenIzquierdo = 50;
+    const margenDerecho = 50;
+    const anchoUtil = canvas.width - margenIzquierdo - margenDerecho;
+    const escala = anchoUtil / xMax; // ajusta la escala dinámicamente
+
     const animar = () => {
         if (!animacionActiva || indice >= datos.length) {
             animacionActiva = false;
@@ -303,11 +309,11 @@ function iniciarAnimacion(datos) {
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Dibujar pista
+
+        // Pista
         ctx.fillStyle = '#e5e7eb';
         ctx.fillRect(0, canvas.height - 60, canvas.width, 60);
-        
+
         // Líneas de referencia
         ctx.strokeStyle = '#9ca3af';
         ctx.lineWidth = 1;
@@ -318,11 +324,13 @@ function iniciarAnimacion(datos) {
             ctx.stroke();
         }
 
-        // Calcular posición del carrito
+        // Calcular posición segura del carrito
         const dato = datos[indice];
-        const escala = 5;
-        const posX = 50 + (dato.x * escala);
-        
+        let posX = margenIzquierdo + (dato.x * escala);
+
+        // Evitar que salga del canvas
+        if (posX > canvas.width - 60) posX = canvas.width - 60;
+
         // Dibujar carrito
         ctx.fillStyle = '#3b82f6';
         ctx.fillRect(posX - 15, canvas.height - 80, 30, 20);
@@ -334,30 +342,29 @@ function iniciarAnimacion(datos) {
         ctx.arc(posX + 10, canvas.height - 58, 6, 0, Math.PI * 2);
         ctx.fill();
 
-        // Flecha de velocidad constante
+        // Flecha de velocidad
         ctx.strokeStyle = '#10b981';
         ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(posX + 20, canvas.height - 70);
-        ctx.lineTo(posX + 50, canvas.height - 70);
+        ctx.lineTo(posX + 45, canvas.height - 70);
         ctx.stroke();
-        
-        // Punta de flecha
+
         ctx.fillStyle = '#10b981';
         ctx.beginPath();
-        ctx.moveTo(posX + 50, canvas.height - 70);
-        ctx.lineTo(posX + 45, canvas.height - 75);
-        ctx.lineTo(posX + 45, canvas.height - 65);
+        ctx.moveTo(posX + 45, canvas.height - 70);
+        ctx.lineTo(posX + 40, canvas.height - 75);
+        ctx.lineTo(posX + 40, canvas.height - 65);
         ctx.closePath();
         ctx.fill();
 
-        // Información
+        // Texto
         ctx.fillStyle = '#1f2937';
         ctx.font = '14px Arial';
         ctx.fillText(`x = ${dato.x.toFixed(2)} m`, posX - 30, canvas.height - 90);
-        ctx.fillText(`v = ${dato.v.toFixed(2)} m/s (constante)`, posX - 50, canvas.height - 105);
+        ctx.fillText(`v = ${dato.v.toFixed(2)} m/s`, posX - 40, canvas.height - 105);
 
-        // Texto explicativo
+        // Título
         ctx.fillStyle = '#059669';
         ctx.font = 'bold 16px Arial';
         ctx.fillText('MRU: Velocidad constante', 10, 25);
@@ -371,6 +378,7 @@ function iniciarAnimacion(datos) {
 
     animar();
 }
+
 
 document.getElementById('btnReset').addEventListener('click', () => {
     animacionActiva = false;

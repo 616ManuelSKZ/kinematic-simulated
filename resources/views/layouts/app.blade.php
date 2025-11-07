@@ -18,7 +18,7 @@
     <div class="min-h-screen">
         
         <!-- Navigation -->
-        <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <nav x-data="{ open: false }" class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <!-- Logo y Menú Principal -->
@@ -79,15 +79,8 @@
 
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <!-- Notificaciones -->
-                        <button class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none transition mr-2">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                            </svg>
-                        </button>
-
                         <!-- Dropdown Usuario -->
-                        <div class="relative" x-data="{ open: false }">
+                        <div class="relative">
                             <button @click="open = !open" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none transition">
                                 <div class="flex items-center">
                                     <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
@@ -112,12 +105,12 @@
                                  class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50"
                                  style="display: none;">
                                 
-                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <!-- <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     <svg class="inline w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                     </svg>
                                     Mi Perfil
-                                </a>
+                                </a> -->
 
                                 <a href="{{ route('experimentos.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     <svg class="inline w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,10 +148,13 @@
             </div>
 
             <!-- Responsive Navigation Menu (Mobile) -->
-            <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden" x-data="{ open: false }">
+            <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
                     <a href="{{ route('dashboard') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('dashboard') ? 'border-blue-500 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                         Inicio
+                    </a>
+                    <a href="{{ route('mru') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('mru') ? 'border-cyan-500 text-cyan-700 bg-cyan-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                        MRU
                     </a>
                     <a href="{{ route('mruv') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('mruv') ? 'border-blue-500 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                         MRUV
@@ -166,11 +162,23 @@
                     <a href="{{ route('parabolico') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('parabolico') ? 'border-green-500 text-green-700 bg-green-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                         Parabólico
                     </a>
+                    <a href="{{ route('mediciones.create') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('mediciones.*') ? 'border-orange-500 text-orange-700 bg-orange-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                        Mediciones
+                    </a>
+                    <a href="{{ route('arduino.sensor') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('arduino.*') ? 'border-teal-500 text-teal-700 bg-teal-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                        Arduino + Sensor
+                    </a>
                     <a href="{{ route('experimentos.index') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('experimentos.*') ? 'border-purple-500 text-purple-700 bg-purple-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                         Experimentos
                     </a>
                     <a href="{{ route('ayuda') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ request()->routeIs('ayuda') ? 'border-yellow-500 text-yellow-700 bg-yellow-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                         Ayuda
+                    </a>
+                    <a href="{{ route('desarrolladores') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">
+                        Desarrolladores
+                    </a>
+                    <a href="{{ route('acerca-de') }}" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300">
+                        Acerca de
                     </a>
                 </div>
 
@@ -182,9 +190,9 @@
                     </div>
 
                     <div class="mt-3 space-y-1">
-                        <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+                        <!-- <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100">
                             Mi Perfil
-                        </a>
+                        </a> -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-red-50">
@@ -208,8 +216,11 @@
                     <div>
                         <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Simuladores</h3>
                         <ul class="space-y-2">
+                            <li><a href="{{ route('mru') }}" class="text-gray-600 hover:text-blue-600">MRU</a></li>
                             <li><a href="{{ route('mruv') }}" class="text-gray-600 hover:text-blue-600">MRUV</a></li>
                             <li><a href="{{ route('parabolico') }}" class="text-gray-600 hover:text-blue-600">Movimiento Parabólico</a></li>
+                            <li><a href="{{ route('mediciones.create') }}" class="text-gray-600 hover:text-blue-600">Mediciones</a></li>
+                            <li><a href="{{ route('arduino.sensor') }}" class="text-gray-600 hover:text-blue-600">Arduino + Sensor</a></li>
                         </ul>
                     </div>
                     <div>
@@ -220,10 +231,10 @@
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Legal</h3>
+                        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Información del Proyecto</h3>
                         <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-600 hover:text-blue-600">Términos de Uso</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-blue-600">Privacidad</a></li>
+                            <li><a href="{{ route('desarrolladores') }}" class="text-gray-600 hover:text-blue-600">Desarrolladores</a></li>
+                            <li><a href="{{ route('acerca-de') }}" class="text-gray-600 hover:text-blue-600">Acerca de</a></li>
                         </ul>
                     </div>
                     <div>
