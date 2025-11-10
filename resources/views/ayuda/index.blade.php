@@ -21,9 +21,7 @@
                 <nav class="space-y-2">
                     <a href="#mruv" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 rounded">MRUV</a>
                     <a href="#parabolico" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 rounded">Movimiento Parabólico</a>
-                    <a href="#maqueta" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 rounded">Maqueta Física</a>
                     <a href="#errores" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 rounded">Errores Comunes</a>
-                    <a href="#comparacion" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 rounded">Comparar Datos</a>
                 </nav>
             </div>
         </div>
@@ -141,66 +139,6 @@
                     <p class="text-gray-700 text-sm">
                         La diferencia entre tus datos experimentales y el modelo teórico es normal. Documenta todas las posibles fuentes de error y analiza cuál tiene mayor impacto en tus resultados.
                     </p>
-                </div>
-            </div>
-
-            <!-- Comparar Datos -->
-            <div id="comparacion" class="bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Cómo Comparar Datos Experimentales</h2>
-                
-                <div class="prose max-w-none">
-                    <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-3">Paso 1: Preparar el archivo CSV</h3>
-                    <p class="text-gray-600 mb-3">
-                        Tu archivo CSV debe tener la siguiente estructura:
-                    </p>
-                    
-                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <p class="font-semibold mb-2">Para MRUV:</p>
-                        <pre class="text-sm bg-white p-3 rounded border overflow-x-auto">t,x,v
-0.0,0.0,0.0
-0.5,0.5,1.0
-1.0,2.0,2.0
-1.5,4.5,3.0</pre>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <p class="font-semibold mb-2">Para Movimiento Parabólico:</p>
-                        <pre class="text-sm bg-white p-3 rounded border overflow-x-auto">t,x,y
-0.0,0.0,0.0
-0.2,2.8,1.8
-0.4,5.6,3.2
-0.6,8.4,4.2</pre>
-                    </div>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Paso 2: Subir el archivo</h3>
-                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
-                        <li>Ve a la página de tu experimento guardado</li>
-                        <li>Haz clic en "Comparar con datos experimentales"</li>
-                        <li>Selecciona tu archivo CSV</li>
-                        <li>El sistema calculará automáticamente el error RMSE</li>
-                    </ol>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Paso 3: Interpretar el RMSE</h3>
-                    <div class="bg-gradient-to-r from-green-50 to-yellow-50 p-4 rounded-lg">
-                        <p class="text-gray-700 mb-2"><strong>RMSE (Root Mean Square Error)</strong> mide la diferencia promedio entre tus datos y el modelo:</p>
-                        <ul class="space-y-1 text-gray-600 text-sm">
-                            <li>• <strong>RMSE &lt; 5%:</strong> Excelente ajuste</li>
-                            <li>• <strong>RMSE 5-10%:</strong> Buen ajuste</li>
-                            <li>• <strong>RMSE 10-20%:</strong> Ajuste aceptable</li>
-                            <li>• <strong>RMSE &gt; 20%:</strong> Revisar procedimiento experimental</li>
-                        </ul>
-                    </div>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Análisis de Desviaciones</h3>
-                    <p class="text-gray-600 mb-3">
-                        Si tus datos difieren significativamente del modelo, considera:
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li>✓ Revisar las condiciones iniciales (v₀, x₀, θ)</li>
-                        <li>✓ Verificar errores sistemáticos (fricción, resistencia del aire)</li>
-                        <li>✓ Analizar errores aleatorios (precisión de instrumentos)</li>
-                        <li>✓ Repetir el experimento para confirmar resultados</li>
-                    </ul>
                 </div>
             </div>
 

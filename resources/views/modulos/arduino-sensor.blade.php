@@ -62,10 +62,10 @@
                             Detener Captura
                         </button>
 
-                        <button id="btnGuardar" onclick="guardarExperimento()" disabled
+                        <!-- <button id="btnGuardar" onclick="guardarExperimento()" disabled
                                 class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-4 rounded-md disabled:opacity-50">
                             Guardar Experimento
-                        </button>
+                        </button> -->
                     </div>
                 </div>
             </div>
